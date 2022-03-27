@@ -10,7 +10,7 @@ const port = process.env.PORT || 9000;
 //??
 
 //DB config
-const connection_url = "mongodb+srv://Praveen_Rao_V_P:whatsappclone@cluster0.w4zdp.mongodb.net/whatsappdb?retryWrites=true&w=majority"
+const connection_url = "mongodb+srv://Praveen_Rao:<password>@cluster0.5y0q4.mongodb.net/whatsappdb?retryWrites=true&w=majority"
 mongoose.connect(connection_url);
 
 //API routes
