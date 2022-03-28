@@ -1,0 +1,69 @@
+The snippet below connects to Channels and subscribes to a channel called my‑channel, listening for an event called my‑event.
+
+Javascript
+index.html
+Download
+
+Copy
+<!DOCTYPE html>
+<head>
+  <title>Pusher Test</title>
+  <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('4d9de3ba41c27bc1e1f1', {
+      cluster: 'ap2'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      alert(JSON.stringify(data));
+    });
+  </script>
+</head>
+<body>
+  <h1>Pusher Test</h1>
+  <p>
+    Try publishing an event to channel <code>my-channel</code>
+    with event name <code>my-event</code>.
+  </p>
+</body>
+View pusher-js on Github
+Note: This page also includes the Javascript snippet and so is subscribed to my‑channel too.
+
+Connection status:
+Connected
+
+STEP 2
+Publish events from the server
+Publish an event to your subscribed clients using the server code below and it will be received by any (and all) of the clients you have open, including this page.
+
+Node.js
+Console
+
+Copy
+npm install pusher
+index.js
+Download
+
+Copy
+const Pusher = require("pusher");
+
+const pusher = new Pusher({
+  appId: "1368306",
+  key: "4d9de3ba41c27bc1e1f1",
+  secret: "7122508dafb7354b4558",
+  cluster: "ap2",
+  useTLS: true
+});
+
+pusher.trigger("my-channel", "my-event", {
+  message: "hello world"
+});
+
+
+Praveen_Rao
+fyJHHWj2k0tvzTLl
